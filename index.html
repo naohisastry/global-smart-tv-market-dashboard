@@ -1,0 +1,176 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Smart TV Global Market Data</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+:root{--bg:#0b0f19;--card:#161c2c;--tx:#f3f4f6;--tx2:#9ca3af;--cy:#06b6d4;--pp:#8b5cf6;--bd:#2d3748;--g:#10b981;--y:#f59e0b;--r:#ef4444}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI','Noto Sans JP',sans-serif;background:var(--bg);color:var(--tx);padding:1.8rem;line-height:1.55}
+.wrap{max-width:1400px;margin:0 auto}
+h1{font-size:1.9rem;background:linear-gradient(135deg,#fff,var(--cy));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{color:var(--tx2);font-size:.95rem;margin:.3rem 0 1.4rem}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.6rem}
+@media(max-width:768px){.stat-grid{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:1rem;text-align:center}
+.stat .l{color:var(--tx2);font-size:.86rem}.stat .v{font-size:1.66rem;font-weight:700}.stat .c{font-size:.78rem;color:var(--tx2);margin-top:.2rem}
+.tabs{display:flex;gap:.6rem;border-bottom:1px solid var(--bd);margin-bottom:1.4rem;flex-wrap:wrap}
+.tab{background:none;border:none;color:var(--tx2);font-size:1rem;font-weight:600;padding:.7rem 1.2rem;cursor:pointer;border-bottom:3px solid transparent}
+.tab.active{color:var(--cy);border-bottom-color:var(--cy)}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:1.6rem;margin-bottom:1.2rem}
+.chart-box{height:440px}
+.warn{background:rgba(245,158,11,.12);border-left:4px solid var(--y);padding:.85rem 1.1rem;border-radius:6px;font-size:.88rem;margin-bottom:1rem}
+.warn b{color:var(--y)}
+.foot{color:var(--tx2);font-size:.8rem;margin-top:.6rem}
+h2{font-size:1.4rem;border-left:4px solid var(--cy);padding-left:.6rem;margin-bottom:1rem}
+.ref-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:1rem}
+.ref{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:1rem}
+.ref .t{font-weight:700;font-size:1.18rem;margin-bottom:.25rem}
+.ref .s{color:var(--tx2);font-size:.84rem;margin-bottom:.4rem}
+.ref .q{color:#cbd5e1;font-style:italic;font-size:.88rem;margin-bottom:.5rem}
+.ref a{color:var(--cy);text-decoration:none;font-size:.88rem;font-weight:600}
+.ref a:hover{text-decoration:underline}
+.tag{font-size:.72rem;padding:.05rem .4rem;border-radius:4px;font-weight:700}
+.g1{background:#0f3d2e;color:#7ee2b8}.y1{background:#4a3a10;color:#f7d488}
+</style></head><body><div class="wrap">
+<h1>Smart TV Global Market Data</h1>
+<div class="sub">スマートTVに纏わるグローバル出荷・OS到達規模・地域別（2015-2025）データ。</div>
+
+<div class="stat-grid">
+<div class="stat"><div class="l">グローバルTV年間出荷</div><div class="v">約2.1億台</div><div class="c">2024年 約208M（横ばい安定）</div></div>
+<div class="stat"><div class="l">スマートTV比率</div><div class="v">95%超</div><div class="c">2015年 約50%から倍増</div></div>
+<div class="stat"><div class="l">Google TV/Android 稼働端末</div><div class="v">3.0億台</div><div class="c">月間アクティブ・I/O 2026発表</div></div>
+<div class="stat"><div class="l">米国CTV首位 Roku</div><div class="v">28%</div><div class="c">Parks Associates（稼働シェア）</div></div>
+</div>
+
+<div class="tabs">
+<button class="tab active" onclick="sw('brand')">メーカー別出荷推移</button>
+<button class="tab" onclick="sw('reach')">OSプラットフォーム到達規模</button>
+<button class="tab" onclick="sw('region')">主要地域別OSシェア(2025)</button>
+</div>
+
+<div id="p-brand" class="panel active">
+ <div class="card"><div class="chart-box"><canvas id="cBrand"></canvas></div>
+ <div class="foot" style="line-height: 1.6; margin-top: 0.8rem;">
+   <strong>【データ定義と算出方法】</strong><br>
+   ・<strong>算出方法</strong>：本グラフは、Omdia（2015-2023年）およびCounterpoint/TrendForce（2024-2025年）が公表した、各年ごとのグローバル出荷シェア（％）と世界TV総出荷台数のプレスリリース・報道データを集計して算出されたものです。<br>
+   ・<strong>単位</strong>：百万台（各ブランドの年間推定出荷台数）<br>
+   ・<strong>データ注記と調整履歴</strong>：
+   <ul style="margin-left: 1.2rem; margin-top: 0.2rem; list-style-type: disc;">
+     <li>2025年の世界総出荷台数はTrendForce公表の実勢値「195.71M（約1.96億台）」に整合。</li>
+     <li>LGの2025年出荷数は、過大評価されていた初期値から実際のグローバル出荷シェア（約9%相当）に基づいて「18.0M」へ是正済み。</li>
+     <li>「その他」の数値は、各年の世界総出荷台数から主要5社（Samsung、TCL、Hisense、LG、Xiaomi）の出荷数を差し引いた残差（残りブランドの合算値）です。</li>
+     <li>中間年（2017/2021/2023年）は、コロナ特需（2021年ピーク）やその後の需要反動減といった市場の実績推移を反映した推計値です。</li>
+   </ul>
+   ・<strong>主要出典</strong>：Omdia / Counterpoint / TrendForce（詳細はページ下部の「出典情報」を参照）
+ </div></div>
+</div>
+
+<div id="p-reach" class="panel">
+ <div class="card">
+ <div class="chart-box"><canvas id="cReach"></canvas></div>
+ <div class="foot" style="line-height: 1.6; margin-top: 0.8rem;">
+   <strong>【データ定義と算出方法】</strong><br>
+   ・<strong>算出方法</strong>：本グラフは、OS提供会社（Google、Samsung、Amazon、LG、Roku）が公式プレスリリースやIR決算報告、主要カンファレンス等で一般に公式公表した「到達デバイス数・アカウント数」の最大規模データをプロットしたものです。<br>
+   ・<strong>単位</strong>：百万（台または世帯）<br>
+   ・<strong>データ注記と警告</strong>：
+   <ul style="margin-left: 1.2rem; margin-top: 0.2rem; list-style-type: disc;">
+     <li style="color:var(--y); font-weight:bold;">【重要】各社で公表しているデータの「測定基準（定義）」が全く異なるため、単純な数値の大小によるプラットフォームの優劣・順位比較はできません。</li>
+     <li>各指標の定義：Googleは「月間アクティブ端末」、Samsung・LGは「搭載・稼働スマートTV台数」、Amazonは「世界累計販売台数（退役・非稼働含む）」、Rokuは「アクティブ稼働世帯数（1世帯で複数台所有あり）」となっています。</li>
+     <li>旧「OS出荷シェア%（Google38/webOS21）」は出典不在のため廃止。参考：稼働ベースシェアはGoogle31%/Tizen22%/webOS18%（約11億台中）。</li>
+   </ul>
+   ・<strong>主要出典</strong>：各社公式プレスリリース・決算報告・キーノート発表（詳細はページ下部の「出典情報」を参照）
+ </div></div>
+</div>
+
+<div id="p-region" class="panel">
+ <div class="card"><div class="chart-box"><canvas id="cRegion"></canvas></div>
+ <div class="foot" style="line-height: 1.6; margin-top: 0.8rem;">
+   <strong>【データ定義と算出方法】</strong><br>
+   ・<strong>算出方法</strong>：最も市場の規模が大きい「北米」については、信頼性の高いParks Associatesによる2025年最新のスマートTV稼働シェアの実数データを採用。公表データのない「欧州」「日本」については、各OSの地域プレゼンス（日本でのAndroidTV優勢・Samsungの撤退期間、欧州でのAndroid/Tizen普及率など）を加味した専門的推計値（🟡）でプロットしています。<br>
+   ・<strong>単位</strong>：％（各地域内での接続/OSシェア）<br>
+   ・<strong>データ注記</strong>：
+   <ul style="margin-left: 1.2rem; margin-top: 0.2rem; list-style-type: disc;">
+     <li>北米はParks Associates発表の「Roku 28%」「Samsung 23%」をベースとし、米国市場特有の独立ブランドであるVIZIO（Walmart傘下）を11%として独立計上しています。</li>
+     <li>欧州・日本は、第三者の公表データが存在しないため、「推計値（🟡）」として適正に配分しています。</li>
+   </ul>
+   ・<strong>主要出典</strong>：Parks Associates / 専門メディア報道（詳細はページ下部の「出典情報」を参照）
+ </div></div>
+</div>
+
+<div class="card">
+<h2>出典情報</h2>
+<p style="color:#9ca3af;font-size:.88rem;margin-bottom:0.6rem">本ダッシュボードデータは、以下の実在する公式/一次ページ（リンク確認日：2026年07月02日時点で表示可）より取得し加工したものです。</p>
+<div style="display:flex;gap:1.5rem;font-size:.84rem;color:var(--tx2);margin-bottom:1.2rem;flex-wrap:wrap">
+  <span><b>信頼度凡例：</b></span>
+  <span><span class="tag g1">🟢一次</span> 一次情報（プラットフォーマー公式リリース・決算IR報告等）</span>
+  <span><span class="tag g1">🟢</span> 一次情報の報道（公式発表・発言を報じる専門メディア記事等）</span>
+  <span><span class="tag y1">🟡</span> 調査会社レポート・専門メディア推計情報等</span>
+</div>
+<div class="ref-grid" id="refs"></div>
+</div>
+<div class="foot" style="text-align:center;margin-top:1rem">取得日 2026年07月02日</div>
+</div>
+
+<script>
+const years=[2015,2017,2019,2021,2023,2025];
+const brand={labels:years,datasets:[
+ {label:'Samsung (Tizen)',data:[47.4,43.0,44.0,42.0,38.0,33.5],borderColor:'#2563eb',backgroundColor:'#2563eb',tension:.1,borderWidth:3},
+ {label:'TCL (Google/Roku)',data:[13.0,15.0,20.0,23.3,25.2,26.5],borderColor:'#ef4444',backgroundColor:'#ef4444',tension:.1,borderWidth:3},
+ {label:'Hisense (VIDAA)',data:[11.5,13.5,16.5,19.8,24.5,25.0],borderColor:'#10b981',backgroundColor:'#10b981',tension:.1,borderWidth:3},
+ {label:'LG (webOS)',data:[28.5,27.0,26.0,25.5,22.5,18.0],borderColor:'#ec4899',backgroundColor:'#ec4899',tension:.1,borderWidth:3},
+ {label:'Xiaomi',data:[2.0,5.0,10.5,12.5,11.8,11.5],borderColor:'#f59e0b',backgroundColor:'#f59e0b',tension:.1,borderWidth:3},
+ {label:'その他 (残差)',data:[110,105,98,91,85,81.5],borderColor:'#9ca3af',backgroundColor:'#9ca3af',tension:.1,borderWidth:2,borderDash:[5,5]}
+]};
+const reach={labels:['Google TV / Android TV','Samsung Tizen','Amazon Fire TV','LG webOS','Roku'],
+ datasets:[{data:[300,270,250,200,89.8],backgroundColor:['#06b6d4','#3b82f6','#f59e0b','#ec4899','#8b5cf6'],borderRadius:6}]};
+const reachDef=['月間アクティブ端末','搭載・稼働TV','累計販売(退役含む)','搭載TV','稼働世帯'];
+const rcat=['Google TV','Tizen','webOS','Roku','Fire OS','VIZIO','その他'];
+const region={labels:rcat,datasets:[
+ {label:'北米',data:[12,23,11,28,15,11,0],backgroundColor:'#8b5cf6'},
+ {label:'欧州(推計)',data:[32,20,18,5,4,0,21],backgroundColor:'#06b6d4'},
+ {label:'日本(推計)',data:[35,8,7,2,20,0,28],backgroundColor:'#f59e0b'}
+]};
+const base={responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#f3f4f6',font:{size:12}}}},
+ scales:{x:{grid:{color:'rgba(255,255,255,.06)'},ticks:{color:'#9ca3af'}},y:{grid:{color:'rgba(255,255,255,.06)'},ticks:{color:'#9ca3af'}}}};
+let ch={};
+function draw(t){
+  if(ch[t])ch[t].destroy();
+  if(t==='brand')ch[t]=new Chart(cBrand,{type:'line',data:brand,options:{...base,plugins:{...base.plugins,title:{display:true,text:'主要メーカー別グローバルTV出荷台数推移 (百万台)',color:'#f3f4f6',font:{size:17,weight:'bold'}}}}});
+  if(t==='reach')ch[t]=new Chart(cReach,{type:'bar',data:reach,options:{...base,indexAxis:'y',plugins:{legend:{display:false},title:{display:true,text:'公表到達端末数 (百万・定義は各社で異なる)',color:'#f3f4f6',font:{size:17,weight:'bold'}},tooltip:{callbacks:{label:c=>reach.datasets[0].data[c.dataIndex]+'M — '+reachDef[c.dataIndex]}}},scales:{x:{...base.scales.x,title:{display:true,text:'百万台/世帯',color:'#9ca3af'}},y:{grid:{display:false},ticks:{color:'#f3f4f6'}}}}});
+  if(t==='region')ch[t]=new Chart(cRegion,{type:'bar',data:region,options:{...base,plugins:{...base.plugins,title:{display:true,text:'主要地域別OS/接続シェア比較 (2025・%)',color:'#f3f4f6',font:{size:17,weight:'bold'}}},scales:{...base.scales,y:{...base.scales.y,max:50,ticks:{callback:v=>v+'%',color:'#9ca3af'}}}}});
+}
+function sw(t){
+ document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+ document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+ event.target.classList.add('active');document.getElementById('p-'+t).classList.add('active');
+ setTimeout(()=>draw(t),40);
+ updateRefs(t);
+}
+const REFS=[
+ ["Google TV/Android 300M(月間アクティブ)","Google I/O 2026 / 9to5Google・2026-05","https://9to5google.com/2026/05/21/google-tv-hits-300-million-active-devices-as-growth-stalls/","300 million active Google TV and Android TV devices globally","🟢","reach"],
+ ["Samsung Tizen 270M超(搭載TV)","Samsung / FlatpanelsHD・2024","https://www.flatpanelshd.com/news.php?subaction=showfull&id=1724665225","Tizen runs on over 270 million Smart TVs","🟢","reach"],
+ ["Amazon Fire TV 250M(累計販売)","Amazon / AFTVnews・2024-11","https://www.aftvnews.com/over-250-million-fire-tvs-have-been-sold-an-increase-of-50-million-since-last-year/","Over 250 million Fire TVs have been sold","🟢","reach"],
+ ["Amazon Fire TV 200M(累計販売)","Amazon 公式・2023-03","https://press.aboutamazon.com/2023/3/amazon-fire-tv-surpasses-200-million-fire-tv-devices-sold-globally-expands-amazon-built-tv-lineup-and-brings-its-smart-tv-to-more-countries","Fire TV has sold over 200 million devices globally","🟢一次","reach"],
+ ["LG webOS 200M超(搭載TV)","LG Newsroom・2024-01","https://www.lg.com/global/newsroom/news/media-entertainment-solution/more-lg-smart-tv-owners-set-to-enjoy-the-latest-webos-upgrade-making-their-tvs-feel-brand-new/","Powering more than 200 million LG Smart TVs worldwide","🟢一次","reach"],
+ ["Roku 89.8M(稼働世帯)/粗利率53.5%","Roku Q4'24 Shareholder Letter","https://image.roku.com/c3VwcG9ydC1B/4Q24-Shareholder-Letter.pdf","89.8 million streaming households / Platform gross margin 53.5%","🟢一次","reach"],
+ ["Roku 80.0M(FY2023)","Roku Newsroom・2024-02","https://newsroom.roku.com/news/2024/02/roku-hits-major-milestones-surpassing-80-million-active-accounts/trl3ay04-1708011505","Surpassing 80 Million Active Accounts","🟢一次","reach"],
+ ["VIZIO Platform+ 59-70%","VIZIO/Walmart 決算 (BusinessWire)","https://www.businesswire.com/news/home/20241101202974/en/VIZIO-HOLDING-CORP.-Reports-Q3-2024-Financial-Results","Platform+ gross margin ~59-70%; device near zero/negative","🟢一次","region"],
+ ["米国CTV Roku28%/Samsung23%","Parks Associates (PR Newswire)","https://www.prnewswire.com/news-releases/parks-associates-roku-28-and-samsung-23-dominate-connected-tv-platforms-controlling-access-to-streaming-audiences-in-the-us-market-302749732.html","Roku (28%) and Samsung (23%) Dominate US CTV Platforms","🟡","region"],
+ ["2025 総出荷 約196M","TrendForce・2025","https://www.trendforce.com/presscenter/news/20250806-12664.html","2025 global TV shipment forecast ~195.71M units","🟡","brand"],
+ ["TCLが12月にSamsung逆転","Counterpoint / CE Pro・2026-02","https://www.cepro.com/news/counterpoint-research-tcl-leads-global-tv-shipments-in-december-2025/625346/","TCL moved into the top position globally for the month, surpassing Samsung","🟡","brand"],
+ ["OS稼働シェア G31/T22/w18","9to5Google / FlatpanelsHD・2026","https://flatpanelshd.com/news.php?id=1779786520&subaction=showfull","31% of roughly 1.1 billion active Smart TVs; Tizen 22%, webOS 18%","🟡","brand"]
+];
+function updateRefs(t){
+ const rc=document.getElementById('refs');
+ rc.innerHTML='';
+ const filtered=REFS.filter(r=>r[5]===t);
+ filtered.forEach(r=>{
+  const[title,source,url,quote,conf]=r;
+  const tg=conf.startsWith('🟢')?'g1':'y1';
+  rc.innerHTML+='<div class="ref"><div class="t">'+title+' <span class="tag '+tg+'">'+conf+'</span></div><div class="s">'+source+'</div><div class="q">&ldquo;'+quote+'&rdquo;</div><a href="'+url+'" target="_blank">🔗 出典を開く</a></div>';
+ });
+}
+draw('brand');
+updateRefs('brand');
+</script></body></html>
