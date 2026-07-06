@@ -40,6 +40,19 @@ Smart TV, Connected TV, CTV, TV OS, Google TV, Fire TV, Roku, Tizen, webOS, Sams
 
 ---
 
+## Documentation
+
+- [Data Sources](DATA_SOURCES.md) — Source categories, public references, official reports, and archived evidence links
+- [Methodology](METHODOLOGY.md) — Data definitions, assumptions, estimation methods, and limitations
+- [Changelog](CHANGELOG.md) — Update history and future update candidates
+
+- ## Documentation / 関連ドキュメント
+
+- [Data Sources](DATA_SOURCES.md) — 出典カテゴリ、公式資料、調査レポート、アーカイブリンクの整理
+- [Methodology](METHODOLOGY.md) — データ定義、推計方法、前提条件、制約事項の説明
+- [Changelog](CHANGELOG.md) — 更新履歴と今後の更新候補
+
+
 ## 🚀 動作確認・起動方法
 
 特別なサーバー設定やインストール作業は一切不要です。
