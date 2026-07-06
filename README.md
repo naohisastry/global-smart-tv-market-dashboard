@@ -1,8 +1,16 @@
-# Smart TV Global Market Data & OS Sovereignty Dashboard (2015-2025)
+# Global Smart TV / Connected TV Market Dashboard (2015–2025)
 
-世界のスマートテレビ市場における主要メーカーの出荷台数推移、主要OSプラットフォームの到達規模、および地域別（北米・欧州・日本）の接続OSシェアを可視化するインタラクティブなダッシュボードです。
+An interactive market research dashboard analyzing the global Smart TV and Connected TV market from 2015 to 2025, including TV shipment trends, TV OS platform reach, and regional connected-TV OS share across North America, Europe, and Japan.
 
-すべてのデータ点に、実在する公式発表、IR報告書、およびWayback Machine（恒久ウェブアーカイブ）への直リンクが付記されており、すべてのデータエビデンスをその場でファクトチェックできる透明性の高い構造になっています。
+本ダッシュボードは、2015年〜2025年の世界スマートテレビ／Connected TV市場について、主要メーカー別出荷台数、主要TV OSプラットフォームの到達規模、北米・欧州・日本における接続OSシェアを可視化するインタラクティブな分析ツールです。
+
+## Live Dashboard
+
+https://naohisastry.github.io/global-smart-tv-market-dashboard/
+
+## Keywords
+
+Smart TV, Connected TV, CTV, TV OS, Google TV, Fire TV, Roku, Tizen, webOS, Samsung, LG, Hisense, TCL, media industry, market research, OS sovereignty, dashboard
 
 ## 📊 ダッシュボードの主な機能
 
