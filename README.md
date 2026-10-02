@@ -56,7 +56,7 @@ Smart TV, Connected TV, CTV, TV OS, Google TV, Fire TV, Roku, Tizen, webOS, Sams
 
 ---
 
-## 📝 ライセンス・データクレジット
+## 📝 データクレジット / Data Credits
 
 本ダッシュボードに掲載されているデータは、以下の各社の公式IR・プレスリリースおよび調査レポートを収集・整理したものです。
 * Google LLC
@@ -69,3 +69,12 @@ Smart TV, Connected TV, CTV, TV OS, Google TV, Fire TV, Roku, Tizen, webOS, Sams
 * TrendForce / Counterpoint / Omdia
 
 各データの詳細な引用箇所および恒久アーカイブリンクは、ダッシュボード下部の「出典情報」にてご確認いただけます。
+
+## 📄 License / ライセンス
+
+- **Code**（HTML / CSS / JavaScript）: [MIT License](LICENSE)
+- **Content**（文章・図表・分析結果・整理済みデータ）: [CC BY 4.0](LICENSE-CONTENT.md)
+- 出典表示例 / Attribution: Naohisa Hashimoto, "global-smart-tv-market-dashboard", https://naohisastry.github.io/global-smart-tv-market-dashboard/
+- 第三者の元データの権利は各発行元に帰属します。 / Third-party source data remain the property of their original publishers.
+
+© 2026 Naohisa Hashimoto
